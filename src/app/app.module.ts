@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalPersonComponent } from './modal-person/modal-person.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TopBarComponent
+    TopBarComponent,
+    ModalPersonComponent
   ],
   imports: [
     BrowserModule,
