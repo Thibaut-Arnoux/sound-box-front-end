@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder } from '@angular/forms';
+
 
 
 @Component({
@@ -8,13 +10,28 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./modal-person.component.css']
 })
 export class ModalPersonComponent implements OnInit {
-  closeResult = '';
+  // closeResult = '';
+  checkoutForm;
 
-  constructor(private modalService: NgbModal) { }
+  constructor(
+    public activeModal: NgbActiveModal,
+    private formBuilder: FormBuilder) {
+      this.checkoutForm = this.formBuilder.group({
+        name: '',
+        pseudo: ''
+      });
+     }
 
   ngOnInit(): void {
   }
 
+  onSubmit(personData) {
+    // Process checkout data here
+    this.checkoutForm.reset();
+
+    console.warn('Your order has been submitted', personData);
+  }
+/**
   open(content) {
     console.log(content);
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -25,4 +42,5 @@ export class ModalPersonComponent implements OnInit {
       console.log(`REASON ${reason}`);
     });
   }
+   */
 }
