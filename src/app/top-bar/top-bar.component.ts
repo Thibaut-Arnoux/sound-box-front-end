@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalPersonComponent } from '../modal-person/modal-person.component';
 
 @Component({
   selector: 'app-top-bar',
@@ -7,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public modalService: NgbModal) { }
 
   ngOnInit(): void {
   }
 
-  o
+  openModalPerson(){
+    this.modalService.open(ModalPersonComponent)
+  };
 }
