@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, Validators  } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
+import { IPerson, Person } from '../models/person.model';
 
 @Component({
   selector: 'app-modal-person',
@@ -8,9 +9,9 @@ import { FormBuilder, Validators  } from '@angular/forms';
   styleUrls: ['./modal-person.component.css']
 })
 export class ModalPersonComponent implements OnInit {
-  // closeResult = '';
-  checkoutForm;
-  submitted = false;
+  checkoutForm : FormGroup;
+  submitted : boolean = false;
+  person : IPerson;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -26,27 +27,16 @@ export class ModalPersonComponent implements OnInit {
 
   onSubmit(personData) {
     this.submitted = true;
+
     // stop here if form is invalid
     if (this.checkoutForm.invalid) {
       console.warn('Invalid Form');
       return;
     }
     // Process checkout data here
-    //this.checkoutForm.reset();
-    this.activeModal.close()
+     this.person = new Person(null, personData.name, personData.pseudo);
+     console.log(this.person);
 
-    console.warn('Your order has been submitted', personData);
+    this.activeModal.close()
   }
-/**
-  open(content) {
-    console.log(content);
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      console.log(`RESULT : ${result}`);
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${(reason)}`;
-      console.log(`REASON ${reason}`);
-    });
-  }
-   */
 }
