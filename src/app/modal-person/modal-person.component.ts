@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder } from '@angular/forms';
-
-
+import { FormBuilder, Validators  } from '@angular/forms';
 
 @Component({
   selector: 'app-modal-person',
@@ -12,13 +10,14 @@ import { FormBuilder } from '@angular/forms';
 export class ModalPersonComponent implements OnInit {
   // closeResult = '';
   checkoutForm;
+  submitted = false;
 
   constructor(
     public activeModal: NgbActiveModal,
     private formBuilder: FormBuilder) {
       this.checkoutForm = this.formBuilder.group({
-        name: '',
-        pseudo: ''
+        name: ['', Validators.required],
+        pseudo: ['', Validators.required]
       });
      }
 
@@ -26,8 +25,15 @@ export class ModalPersonComponent implements OnInit {
   }
 
   onSubmit(personData) {
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.checkoutForm.invalid) {
+      console.warn('Invalid Form');
+      return;
+    }
     // Process checkout data here
-    this.checkoutForm.reset();
+    //this.checkoutForm.reset();
+    this.activeModal.close()
 
     console.warn('Your order has been submitted', personData);
   }

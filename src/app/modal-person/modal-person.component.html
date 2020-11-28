@@ -11,23 +11,31 @@
 
       <div>
         <label for="name">
-          Name: 
+          Name
         </label>
         <br/>
         <input id="name" type="text" formControlName="name">
+        <p style="color:red"  *ngIf="submitted && checkoutForm.controls.name.errors">
+          <b>Required</b>
+        </p>
       </div>
+
+      
     
       <div>
         <label for="pseudo">
-          Pseudo: 
+          Pseudo 
         </label>
         <br/>
         <input id="pseudo" type="text" formControlName="pseudo">
+        <p style="color:red"  *ngIf="submitted && checkoutForm.controls.pseudo.errors">
+          <b>Required</b>
+        </p>
       </div>
   </div>
 
   <div class="modal-footer">
-    <button class="btn btn-outline-dark" type="submit" (click)="activeModal.close()">Save</button>
+    <button class="btn btn-outline-dark" type="submit">Save</button>
   </div>
 </form>
 
