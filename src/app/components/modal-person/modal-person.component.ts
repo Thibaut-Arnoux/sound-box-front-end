@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
-import { IPerson, Person } from '../models/person.model';
+import { IPerson, Person } from '../../models/person.model';
 
 @Component({
   selector: 'app-modal-person',
