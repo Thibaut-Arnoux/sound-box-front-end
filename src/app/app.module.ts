@@ -4,10 +4,10 @@ import { ReactiveFormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TopBarComponent } from './top-bar/top-bar.component';
+import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ModalPersonComponent } from './modal-person/modal-person.component';
-import { ModalSoundComponent } from './modal-sound/modal-sound.component';
+import { ModalPersonComponent } from './components/modal-person/modal-person.component';
+import { ModalSoundComponent } from './components/modal-sound/modal-sound.component';
 
 @NgModule({
   declarations: [
