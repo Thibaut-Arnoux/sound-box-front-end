@@ -14,8 +14,8 @@
             Name
           </label>
           <br/>
-          <input id="name" type="text" formControlName="soundName">
-          <p style="color:red"  *ngIf="submitted && checkoutForm.controls.soundName.errors">
+          <input id="name" type="text" formControlName="soundNameForm">
+          <p style="color:red"  *ngIf="submitted && checkoutForm.controls.soundNameForm.errors">
             <b>Required</b>
           </p>
         </div>
@@ -27,11 +27,27 @@
             File 
           </label>
           <br/>
-          <input id="sound-file" type="file" accept="audio/*" formControlName="soundFile">
-          <p style="color:red"  *ngIf="submitted && checkoutForm.controls.soundFile.errors">
+          <input id="sound-file" type="file" accept="audio/*" formControlName="soundFileForm">
+          <p style="color:red"  *ngIf="submitted && checkoutForm.controls.soundFileForm.errors">
             <b>Required</b>
           </p>
         </div>
+
+        <div class="mt-1">
+          <label for="sound-file">
+            Person 
+          </label>
+          <br/>
+          <select id="person" formControlName="personForm">
+            <option selected="selected"></option>
+            <option *ngFor="let person of personList" [ngValue]="person.id">
+              {{person.name}} aka {{person.pseudo}}
+            </option>
+        </select>
+        <p style="color:red"  *ngIf="submitted && checkoutForm.controls.personForm.errors">
+          <b>Required</b>
+        </p>
+      </div>
     </div>
   
     <div class="modal-footer">
