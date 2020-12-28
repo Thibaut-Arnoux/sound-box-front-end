@@ -8,6 +8,7 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalPersonComponent } from './components/modal-person/modal-person.component';
 import { ModalSoundComponent } from './components/modal-sound/modal-sound.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ModalSoundComponent } from './components/modal-sound/modal-sound.compon
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

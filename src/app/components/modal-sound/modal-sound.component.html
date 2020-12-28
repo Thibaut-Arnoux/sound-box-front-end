@@ -1,4 +1,4 @@
-<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
 
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Register new sound</h4>
@@ -27,7 +27,7 @@
             File 
           </label>
           <br/>
-          <input id="sound-file" type="file" accept="audio/*" formControlName="soundFileForm">
+          <input id="sound-file" type="file" accept="audio/*" (change)="onFileSelect($event)">
           <p style="color:red"  *ngIf="submitted && checkoutForm.controls.soundFileForm.errors">
             <b>Required</b>
           </p>
