@@ -18,7 +18,7 @@ export class SoundService {
     private http: HttpClient
   ) { }
 
-  createNewSoundWithFile(sound: ISound, audio: File) {
+  createSoundWithFile(sound: ISound, audio: File) {
     return new Promise((resolve, reject) => {
       const formData = new FormData();
       formData.append('sound', JSON.stringify(sound));

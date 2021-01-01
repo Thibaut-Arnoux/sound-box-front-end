@@ -24,9 +24,9 @@ export class ModalSoundComponent implements OnInit {
     pseudo: 'Yene'
   }] ;
 
-  constructor(
-    private soundService: SoundService,
+  constructor(    
     public activeModal: NgbActiveModal,
+    private soundService: SoundService,
     private formBuilder: FormBuilder) {
       this.checkoutForm = this.formBuilder.group({
         soundNameForm: ['', Validators.required],
@@ -59,7 +59,7 @@ export class ModalSoundComponent implements OnInit {
       return;
     }
     // Process checkout data here
-    this.soundService.createNewSoundWithFile(sound, this.checkoutForm.get('soundFileForm').value)
+    this.soundService.createSoundWithFile(sound, this.checkoutForm.get('soundFileForm').value)
     .then(
       (response) => {
         console.log(response);
