@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
 import { IPerson } from '../../models/person.model';
-import {ISound, Sound } from '../../models/sound.model';
-import { HttpClient } from '@angular/common/http';
-
+import { Sound } from '../../models/sound.model';
+import { SoundService } from '../../services/sound.service';
 
 @Component({
   selector: 'app-modal-sound',
@@ -26,7 +25,7 @@ export class ModalSoundComponent implements OnInit {
   }] ;
 
   constructor(
-    private http: HttpClient,
+    private soundService: SoundService,
     public activeModal: NgbActiveModal,
     private formBuilder: FormBuilder) {
       this.checkoutForm = this.formBuilder.group({
@@ -53,11 +52,6 @@ export class ModalSoundComponent implements OnInit {
     sound.name = this.checkoutForm.get('soundNameForm').value;
     sound.PersonId = this.checkoutForm.get('personForm').value;
     sound.fileUrl = '';
-    const formData = new FormData();
-    //formData.append('soundName', this.checkoutForm.get('soundNameForm').value);
-    //formData.append('personId', this.checkoutForm.get('personForm').value);
-    formData.append('sound', JSON.stringify(sound));
-    formData.append('audio', this.checkoutForm.get('soundFileForm').value);
 
     // stop here if form is invalid
     if (this.checkoutForm.invalid) {
@@ -65,14 +59,15 @@ export class ModalSoundComponent implements OnInit {
       return;
     }
     // Process checkout data here
-    this.http.post('http://localhost:3000/api/sound', formData).toPromise()
-    .then((response : any) => {
-      console.log(response)
-    })
-    .catch(error => {
-      console.log(error)
-    });
-
-    this.activeModal.close()
+    this.soundService.createNewSoundWithFile(sound, this.checkoutForm.get('soundFileForm').value)
+    .then(
+      (response) => {
+        console.log(response);
+        this.activeModal.close();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }
