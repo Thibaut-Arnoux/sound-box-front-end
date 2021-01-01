@@ -36,10 +36,16 @@ export class ModalPersonComponent implements OnInit {
       return;
     }
     // Process checkout data here
-     this.person = new Person(undefined, personData.name, personData.pseudo);
-     console.log(this.person);
-     this.personService.createPerson(this.person);
-
-    this.activeModal.close()
+    this.person = new Person(undefined, personData.name, personData.pseudo);
+    this.personService.createPerson(this.person)
+    .then(
+      (response) => {
+        console.log(response);
+        this.activeModal.close();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

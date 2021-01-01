@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
-import { IPerson } from '../../models/person.model';
 import { Sound } from '../../models/sound.model';
 import { SoundService } from '../../services/sound.service';
+import { IPerson } from '../../models/person.model';
+import { PersonService } from '../../services/person.service';
 
 @Component({
   selector: 'app-modal-sound',
@@ -13,20 +14,12 @@ import { SoundService } from '../../services/sound.service';
 export class ModalSoundComponent implements OnInit {
   checkoutForm : FormGroup;
   submitted : boolean = false;
-  personList : IPerson[] = [{
-    id: 1,
-    name: 'Thibaut',
-    pseudo: 'Vlamz'
-  },
-  {
-    id: 2,
-    name: 'Theo',
-    pseudo: 'Yene'
-  }] ;
+  personList : IPerson[] = [];
 
   constructor(    
     public activeModal: NgbActiveModal,
     private soundService: SoundService,
+    private personService: PersonService,
     private formBuilder: FormBuilder) {
       this.checkoutForm = this.formBuilder.group({
         soundNameForm: ['', Validators.required],
@@ -36,6 +29,15 @@ export class ModalSoundComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.personService.getAllPerson()
+    .then(
+      (persons : IPerson[]) => {
+        this.personList = persons;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   onFileSelect(event) {

@@ -31,4 +31,17 @@ export class PersonService {
       );
     });
   }
+
+  getAllPerson() {
+    return new Promise((resolve, reject) => {
+      this.http.get(API).subscribe(
+        (response) => {
+          resolve(response);
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
 }
