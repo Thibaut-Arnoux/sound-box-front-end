@@ -5,6 +5,7 @@ import { Sound } from '../../models/sound.model';
 import { SoundService } from '../../services/sound.service';
 import { IPerson } from '../../models/person.model';
 import { PersonService } from '../../services/person.service';
+import {Router} from "@angular/router"
 
 @Component({
   selector: 'app-modal-sound',
@@ -20,6 +21,7 @@ export class ModalSoundComponent implements OnInit {
     public activeModal: NgbActiveModal,
     private soundService: SoundService,
     private personService: PersonService,
+    private router: Router,
     private formBuilder: FormBuilder) {
       this.checkoutForm = this.formBuilder.group({
         soundNameForm: ['', Validators.required],
@@ -65,6 +67,7 @@ export class ModalSoundComponent implements OnInit {
     .then(
       (response) => {
         console.log(response);
+        this.router.navigate(['/']);
         this.activeModal.close();
       },
       (error) => {

@@ -1,1 +1,15 @@
-<p>home works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div *ngFor="let item of homeList"> 
+            <div class="col">       
+                <div>{{item.person.name}}</div>
+                <div>{{item.person.pseudo}}</div>
+                <div>----------Sounds-----------</div>
+                <div *ngFor="let sound of item.sounds">
+                    <div>{{ sound.name}}</div>
+                    <audio controls [src]="sound.fileUrl"></audio>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

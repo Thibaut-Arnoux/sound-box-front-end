@@ -34,4 +34,30 @@ export class SoundService {
       );
     });
   }
+
+  getAllSound() {
+    return new Promise((resolve, reject) => {
+      this.http.get(API).subscribe(
+        (response) => {
+          resolve(response);
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  getAllSoundByPerson(id: number) {
+    return new Promise((resolve, reject) => {
+      this.http.get(`${API}/person/${id}`).subscribe(
+        (response) => {
+          resolve(response);
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
 }

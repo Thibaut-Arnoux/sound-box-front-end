@@ -3,6 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
 import { IPerson, Person } from '../../models/person.model';
 import { PersonService } from '../../services/person.service';
+import {Router} from "@angular/router"
 
 @Component({
   selector: 'app-modal-person',
@@ -17,6 +18,7 @@ export class ModalPersonComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     private personService: PersonService,
+    private router: Router,
     private formBuilder: FormBuilder) {
       this.checkoutForm = this.formBuilder.group({
         name: ['', Validators.required],
@@ -42,6 +44,7 @@ export class ModalPersonComponent implements OnInit {
       (response) => {
         console.log(response);
         this.activeModal.close();
+        this.router.navigate(['/']);
       },
       (error) => {
         console.log(error);
