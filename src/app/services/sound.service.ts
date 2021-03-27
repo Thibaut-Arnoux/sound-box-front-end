@@ -6,7 +6,7 @@ import { ISound } from '../models/sound.model';
 const protocol : String = 'http';
 const host : String = 'localhost';
 const port : String = '3000';
-const url : String = '/api';
+const url : String = ''; // '/api'
 const service_url : String = '/sound';
 const API = `${protocol}://${host}:${port}${url}${service_url}`;
 

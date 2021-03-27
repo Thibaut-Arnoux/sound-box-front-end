@@ -6,8 +6,8 @@ import { IPerson } from '../models/person.model';
 const protocol : String = 'http';
 const host : String = 'localhost';
 const port : String = '3000';
-const url : String = '/api';
-const service_url : String = '/person';
+const url : String = ''; // '/api'
+const service_url : String = '/person'; // http://127.0.0.1:8000/person
 const API = `${protocol}://${host}:${port}${url}${service_url}`;
 
 @Injectable({
